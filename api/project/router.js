@@ -2,10 +2,10 @@
 
 const express = require('express')
 const Projects = require('./model')
-const proRo = express.Router()
+const projectRouter = express.Router()
 
 
-proRo.get('/', async(req, res, next)=> {
+projectRouter.get('/', async(req, res, next)=> {
     try{
         const projects = await Projects.get()
         const booleanProjects = projects.map(project =>{
@@ -21,7 +21,7 @@ proRo.get('/', async(req, res, next)=> {
     }
 })
 
-proRo.post('/', async (req, res, next) => {
+projectRouter.post('/', async (req, res, next) => {
     try {
         const newProject = await Projects.insert(req.body)
         if(newProject[0].project_completed === 0){
@@ -36,4 +36,4 @@ proRo.post('/', async (req, res, next) => {
 
 
 
-module.exports = proRo
+module.exports = projectRouter

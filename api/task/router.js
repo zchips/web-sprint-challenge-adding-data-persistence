@@ -1,10 +1,10 @@
 // build your `/api/tasks` router here
 const express = require('express');
 const Tasks = require('./model');
-const tasRo = express.Router();
+const taskRouter = express.Router();
 
 
-tasRo.get('/', async (req, res, next)=>{
+taskRouter.get('/', async (req, res, next)=>{
     try{
         const tasks = await Tasks.get()
         const booleanTasks = tasks.map(task=> {
@@ -21,7 +21,7 @@ tasRo.get('/', async (req, res, next)=>{
 })
 
 
-tasRo.post('/', async (req, res, next) => {
+taskRouter.post('/', async (req, res, next) => {
     try{
         const newTask = await Tasks.insert(req.body)
         if(newTask[0].task_completed === 0){
@@ -37,4 +37,4 @@ tasRo.post('/', async (req, res, next) => {
 
 
 
-module.exports = tasRo
+module.exports = taskRouter
