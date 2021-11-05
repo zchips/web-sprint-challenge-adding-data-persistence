@@ -5,7 +5,7 @@ function get(){
     return db('projects')
 }
 
-function getById(projec_id){
+function getById(project_id){
     return db('projects').where('project_id', project_id)
 }
 
