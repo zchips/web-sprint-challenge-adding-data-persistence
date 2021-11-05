@@ -4,6 +4,15 @@
 const express = require('express');
 const server = express();
 
+const proRo = require('./project/router')
+const resRo = require('./resource/router')
+const tasRo = require('./task/router')
+
+server.use('/api/project',proRo );
+server.use('/api/resource', resRo );
+server.use('/api/task', tasRo);
+
+
 server.use(express.json());
 
 server.use((err, req, res, next)=>{
