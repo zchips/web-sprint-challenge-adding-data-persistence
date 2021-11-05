@@ -5,6 +5,15 @@ const Projects = require('./model')
 const projectRouter = express.Router()
 
 
+projectRouter.get('/', async (req, res, next)=>{
+    try{ 
+        const allProjects = await Projects.get();
+        res.status(200).json(allProjects);
+    }catch(error){
+        next(error)
+    }
+})
+
 projectRouter.get('/', async(req, res, next)=> {
     try{
         const projects = await Projects.get()
